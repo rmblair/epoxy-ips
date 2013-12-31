@@ -1,1 +1,5 @@
 build.log*
+
+# need to use local.mog.dist instead of local.mog, and call generate_localmog
+# to generate local.mog based on values from site.sh knobs
+local.mog
