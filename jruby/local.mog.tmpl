@@ -1,0 +1,34 @@
+license COPYING license=Tri-EPL_GPL_LGPL
+license LICENSE.RUBY license=RubyLicense
+
+# remove non-unixoid bits
+<transform file path=.*\.bat$ -> drop>
+<transform file path=.*\.dll$ -> drop>
+<transform file path=.*\.exe$ -> drop>
+
+### lib/jni as of 1.7.9
+#Darwin      i386-SunOS    sparcv9-SunOS   x86_64-SunOS
+#arm-Linux   i386-Windows  x86_64-FreeBSD  x86_64-Windows
+#i386-Linux  ppc-AIX       x86_64-Linux
+<transform file path={{PREFIX}}/.*/lib/jni/Darwin/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/jni/.*-Linux/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/jni/.*-Windows/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/jni/.*-AIX/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/jni/.*-FreeBSD/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/jni/sparcv9-SunOS/.*$ -> drop>
+
+### lib/ruby/shared/ffi/platform as of 1.7.9
+# arm-linux i386-darwin i386-freebsd i386-linux i386-openbsd
+# i386-solaris i386-windows i486-gnu mips-linux mipsel-linux
+# powerpc-aix powerpc-darwin powerpc-linux ppc-darwin s390-linux
+# s390x-linux sparc-solaris sparcv9-solaris x86_64-darwin
+# x86_64-freebsd x86_64-linux x86_64-openbsd x86_64-solaris x86_64-windows 
+<transform file path={{PREFIX}}/.*/lib/ruby/shared/ffi/platform/.*-aix/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/ruby/shared/ffi/platform/.*-darwin/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/ruby/shared/ffi/platform/.*-freebsd/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/ruby/shared/ffi/platform/.*-gnu/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/ruby/shared/ffi/platform/.*-linux/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/ruby/shared/ffi/platform/.*-openbsd/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/ruby/shared/ffi/platform/.*-windows/.*$ -> drop>
+<transform file path={{PREFIX}}/.*/lib/ruby/shared/ffi/platform/sparc.*-solaris/.*$ -> drop>
+
