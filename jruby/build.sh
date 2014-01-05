@@ -38,15 +38,17 @@ SUMMARY="Ruby programming language for the JVM" # One-liner, must be filled in
 DESC="JRuby is a high performance, stable, fully threaded Java \
     implementation of the Ruby programming language"
 
+SHORTVER=$(shorten_to_majmin $VER)
+
 # reconfigure download to use a global site
 MIRROR=jruby.org.s3.amazonaws.com
 
 build_jruby() {
     logmsg "Installing JRuby bits from distribution bin tarball"
-    mkdir -p $DESTDIR/$PREFIX/$PROG/$VER || \
+    mkdir -p $DESTDIR/$PREFIX/$PROG/$SHORTVER || \
         logerr "--- Failed to create installation directory"
     pushd $TMPDIR/$BUILDDIR > /dev/null
-    logcmd cp -r bin docs lib samples tool $DESTDIR/$PREFIX/$PROG/$VER || \
+    logcmd cp -r bin docs lib samples tool $DESTDIR/$PREFIX/$PROG/$SHORTVER || \
         logerr "--- Failed to copy JRuby bits into DESTDIR"
     popd > /dev/null
 }
