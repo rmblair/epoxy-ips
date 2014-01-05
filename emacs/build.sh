@@ -49,7 +49,7 @@ LDFLAGS="-lcurses"
 BUILDARCH=64
 # we don't have X11, but don't try finding it either
 CONFIGURE_OPTS_64="
-    --prefix=/opt/$PKGPUBLISHER/$PROG/$VER
+    --prefix=$PREFIX/$PROG/$VER
     --without-all
 "
 
