@@ -33,7 +33,7 @@ PROG=cvs        # App name
 VER=1.11.23     # App version
 VERHUMAN=$VER   # Human-readable version
 #PVER=          # Branch (set in config.sh, override here if needed)
-PKG=developer/versioning/cvs # Package name (e.g. library/foo)
+PKG=$PKGNAMESPACE/developer/versioning/cvs # Package name (e.g. library/foo)
 SUMMARY="Concurrent Versions System" # One-liner, must be filled in
 DESC="$SUMMARY"         # Longer description, must be filled in
 

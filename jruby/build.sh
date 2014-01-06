@@ -33,7 +33,7 @@ PROG=jruby    # App name
 VER=1.7.9     # App version
 VERHUMAN=$VER # Human-readable version
 #PVER=         # Branch (set in config.sh, override here if needed)
-PKG=language/runtime/jruby # Package name (e.g. library/foo)
+PKG=$PKGNAMESPACE/language/runtime/jruby # Package name (e.g. library/foo)
 SUMMARY="Ruby programming language for the JVM" # One-liner, must be filled in
 DESC="JRuby is a high performance, stable, fully threaded Java \
     implementation of the Ruby programming language"

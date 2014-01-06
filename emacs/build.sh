@@ -33,7 +33,7 @@ PROG=emacs      # App name
 VER=24.3        # App version
 VERHUMAN=$VER   # Human-readable version
 #PVER=          # Branch (set in config.sh, override here if needed)
-PKG=editor/emacs # Package name (e.g. library/foo)
+PKG=$PKGNAMESPACE/editor/emacs # Package name (e.g. library/foo)
 SUMMARY="GNU Emacs is an extensible, customizable text editor--and more"
 DESC="${SUMMARY}"         # Longer description, must be filled in
 
