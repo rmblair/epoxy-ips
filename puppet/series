@@ -1,0 +1,8 @@
+augeas.sh
+libffi.sh
+yaml.sh
+ruby.sh
+ruby-augeas.sh
+facter.sh
+hiera.sh
+puppet.sh
