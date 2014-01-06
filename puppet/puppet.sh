@@ -47,8 +47,8 @@ RUBY_AUGEAS_SHORTVER=$(shorten_to_majmin $RUBY_AUGEAS_VER)
 
 BUILD_DEPENDS_IPS="
     $PKGNAMESPACE/system/management/puppet-private-ruby@${RUBY_SHORTVER}
-    $PKGNAMESPACE/system/management/puppet-private-facter@${FACTER_SHORTVER}
-    $PKGNAMESPACE/system/management/puppet-private-hiera@${HIERA_SHORTVER}
+    $PKGNAMESPACE/system/management/facter@${FACTER_SHORTVER}
+    $PKGNAMESPACE/system/management/hiera@${HIERA_SHORTVER}
     $PKGNAMESPACE/system/management/puppet-private-ruby-augeas@${RUBY_AUGEAS_SHORTVER}
 "
 
