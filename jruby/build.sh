@@ -40,6 +40,10 @@ DESC="JRuby is a high performance, stable, fully threaded Java \
 
 SHORTVER=$(shorten_to_majmin $VER)
 
+# if you provide your own JDK/JRE elsewhere, you can probably lose this
+# set of dependencies. We'll assume you know better what this should be ...
+DEPENDS_IPS="runtime/java developer/java/jdk"
+
 # reconfigure download to use a global site
 MIRROR=jruby.org.s3.amazonaws.com
 
