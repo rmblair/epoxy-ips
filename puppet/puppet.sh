@@ -65,7 +65,7 @@ just_install_it() {
     logcmd pushd $TMPDIR/$BUILDDIR > /dev/null
     logcmd $RUBY_BIN install.rb \
         --destdir=${DESTDIR} \
-        --configdir=${PREFIX}/puppet/etc/puppet \
+        --configdir=/etc/puppet \
         --full > /dev/null
     logcmd popd > /dev/null
 }
@@ -84,6 +84,64 @@ inject_links_localmog() {
         >> local.mog.tmpl
 }
 
+inject_extra_transforms() {
+cat << 'EOF' >> local.mog.tmpl
+### needed for puppetmaster, but not agent
+group gid=499 groupname=puppet
+user ftpuser=false gcos-field="Puppet management user" group=puppet password=NP uid=499 username=puppet home-dir=/var/lib/puppet
+
+# if you run a puppetmaster you might want to make this puppet:puppet 0700
+# I'd do that in your puppetmaster bootstrap ...
+<transform dir path=etc/puppet -> set mode 0750>
+<transform dir path=etc/puppet -> set owner puppet>
+<transform dir path=etc/puppet -> set group puppet>
+
+# this can be used to not provide them as running, but example config
+#<transform file path=etc/puppet/(.*)$ -> edit path etc/puppet/(.*\.conf)$ etc/puppet/%<1>-dist >
+
+dir path=var/lib/puppet mode=0751 owner=puppet group=puppet
+dir path=var/lib/puppet/bucket mode=0750 owner=puppet group=puppet
+dir path=var/lib/puppet/ssl mode=0771 owner=puppet group=puppet
+
+dir group=root mode=0755 owner=root path=var/run/puppet
+<transform dir path=var/run/puppet$ -> set mode 0755>
+<transform dir path=var/run/puppet$ -> set owner puppet>
+<transform dir path=var/run/puppet$ -> set group puppet>
+
+dir group=puppet mode=0750 owner=puppet path=var/log/puppet
+<transform dir path=var/log/puppet$ -> set mode 0750>
+<transform dir path=var/log/puppet$ -> set owner puppet>
+<transform dir path=var/log/puppet$ -> set group puppet>
+
+# strip directories from smf area
+<transform dir path=lib/svc.* -> drop>
+EOF
+}
+
+inject_config() {
+    # copy config files
+    for conffile in $SRCDIR/files/puppet/etc/* ; do
+        cp $conffile $DESTDIR/etc/puppet/
+    done
+
+    # inject IPS transforms to note them as config
+    echo "<transform file path=etc/puppet/(.*)$ -> set preserve renamenew>" \
+        >> local.mog.tmpl
+}
+
+service_configs() {
+    # run template smf manifests through sed
+    logmsg "Installing SMF"
+    logcmd mkdir -p $DESTDIR/lib/svc/manifest/system/management/puppet
+    # can't use logmsg here (screws with stdin/stdout/stderr)
+    sed "s@{{PREFIX}}@${PREFIX}@g" \
+        $SRCDIR/files/puppet/smf/manifest-puppet-agent.xml.tmpl \
+        > $DESTDIR/lib/svc/manifest/system/management/puppet/agent.xml
+    sed "s@{{PREFIX}}@${PREFIX}@g" \
+        $SRCDIR/files/puppet/smf/manifest-puppet-master.xml.tmpl \
+        > $DESTDIR/lib/svc/manifest/system/management/puppet/master.xml
+}
+
 init
 download_source $PROG $PROG $VER
 prep_build
@@ -91,6 +149,9 @@ just_install_it
 clean_localmog
 twiddle_license
 inject_links_localmog
+inject_extra_transforms
+inject_config
+service_configs
 generate_localmog
 make_package
 clean_up
