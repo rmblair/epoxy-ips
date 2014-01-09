@@ -57,18 +57,10 @@ RUBY_BIN=$PREFIX/puppet/ruby/$RUBY_SHORTVER/bin/ruby
 gem_install() {
     logmsg "Using RubyGems to install $PROG"
     logcmd pushd $TMPDIR/$BUILDDIR > /dev/null
-    if [[ ! -f lib/hiera/util.rb.orig ]]; then
-        logmsg "--- making backup of lib/hiera/util.rb"
-        logcmd mv lib/hiera/util.rb lib/hiera/util.rb.orig
-    fi
-
-    # hiera/util.rb ships looking for config in /etc, here we fix this
-    logmsg "--- editing lib/hiera/util.rb"
-    sed s@/etc@$PREFIX/puppet/etc@g < lib/hiera/util.rb.orig > lib/hiera/util.rb
 
     logcmd $RUBY_BIN install.rb \
         --destdir=${DESTDIR} \
-        --configdir=${PREFIX}/puppet/etc \
+        --configdir=/etc \
         --full
     logcmd popd > /dev/null
 }
@@ -85,17 +77,6 @@ inject_links_localmog() {
     echo "link path={{PREFIX}}/puppet/bin/hiera" \
         "target=/{{PREFIX}}/puppet/ruby/$RUBY_SHORTVER/bin/hiera" \
         >> local.mog.tmpl
-
-    ### deal with hiera.yaml
-    # without hacking hiera/util.rb, this link needs to be added
-    # (Hiera::Util.config_dir = /etc)
-    #echo "link path=/etc/hiera.yaml" \
-    #    "target=/{{PREFIX}}/puppet/etc/hiera.yaml" \
-    #    >> local.mog.tmpl
-    ### for now, just drop it
-    #echo "<transform file path={{PREFIX}}/puppet/etc/hiera.yaml$ -> drop>" >> local.mog.tmpl
-    ### for now, just rename it
-    #echo "<transform file path={{PREFIX}}/puppet/etc/hiera.yaml$ -> edit path {{PREFIX}}/puppet/etc/hiera.yaml$ {{PREFIX}}/puppet/etc/hiera.yaml.dist>" >> local.mog.tmpl
 }
 
 init
