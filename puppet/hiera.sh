@@ -77,6 +77,9 @@ inject_links_localmog() {
     echo "link path={{PREFIX}}/puppet/bin/hiera" \
         "target=/{{PREFIX}}/puppet/ruby/$RUBY_SHORTVER/bin/hiera" \
         >> local.mog.tmpl
+    # mark hiera.yaml as config
+    echo "<transform file path=etc/hiera.yaml -> set preserve renamenew>" \
+        >> local.mog.tmpl
 }
 
 init
