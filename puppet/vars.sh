@@ -9,4 +9,4 @@ YAML_VER=0.1.4
 # maybe something in 3.4 breaks for you?
 #PUPPET_VER=3.3.2
 
-PUPPET_VER=3.4.1
+PUPPET_VER=3.4.2
