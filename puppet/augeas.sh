@@ -58,12 +58,19 @@ twiddle_license() {
     echo "license COPYING license=LGPLv2" > local.mog.tmpl
 }
 
+inject_links_localmog() {
+    echo "link path={{PREFIX}}/puppet/bin/augtool" \
+        "target=/{{PREFIX}}/puppet/augeas/$SHORTVER/bin/augtool" \
+        >> local.mog.tmpl
+}
+
 init
 download_source '' $PROG $VER
 patch_source
 prep_build
 build
 twiddle_license
+inject_links_localmog
 generate_localmog
 make_package
 clean_up
