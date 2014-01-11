@@ -119,9 +119,16 @@ EOF
 }
 
 inject_config() {
-    # copy config files
+    # copy distribution config files
+    logcmd pushd $TMPDIR/$BUILDDIR > /dev/null
+    for conffile in conf/*.conf ; do
+        logcmd cp $conffile $DESTDIR/etc/puppet/ > /dev/null
+    done
+    logcmd popd > /dev/null
+
+    # copy package-supplied config files
     for conffile in $SRCDIR/files/puppet/etc/* ; do
-        cp $conffile $DESTDIR/etc/puppet/
+        logcmd cp $conffile $DESTDIR/etc/puppet/ > /dev/null
     done
 
     # inject IPS transforms to note them as config
