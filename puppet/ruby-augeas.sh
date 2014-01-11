@@ -60,9 +60,6 @@ MAKE=gmake
 GEM_BIN=$PREFIX/puppet/ruby/$RUBY_SHORTVER/bin/gem
 RAKE_BIN=$PREFIX/puppet/ruby/$RUBY_SHORTVER/bin/rake
 
-# this is what ruby uses in its gem path, despite being != current (1.9.3?)
-RUBY_VER=1.9.1
-
 # match where ruby lives
 RUBY_PREFIX=$PREFIX/puppet/ruby/$RUBY_SHORTVER
 
@@ -76,7 +73,7 @@ custom_build64() {
     fi
 
     pushd $TMPDIR/$BUILDDIR > /dev/null
-    GEM_HOME=${DESTDIR}${RUBY_PREFIX}/lib/ruby/gems/${RUBY_VER}
+    GEM_HOME=${DESTDIR}${RUBY_PREFIX}/lib/ruby/gems/${RUBY_LIB_VER}
     export GEM_HOME
 
     # build as a gem first ...
