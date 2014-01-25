@@ -36,6 +36,7 @@ VERHUMAN=$VER   # Human-readable version
 PKG=$PKGNAMESPACE/developer/versioning/cvs # Package name (e.g. library/foo)
 SUMMARY="Concurrent Versions System" # One-liner, must be filled in
 DESC="$SUMMARY"         # Longer description, must be filled in
+SHORTVER=$(shorten_to_majmin $VER)
 
 # reconfigure download to use a global site
 MIRROR=ftp.gnu.org
@@ -43,7 +44,7 @@ MIRROR=ftp.gnu.org
 # issues building 64-bit CVS, and it's not really necessary
 BUILDARCH=32
 CONFIGURE_OPTS_32="
-  --prefix=$PREFIX/$PROG/$VER
+  --prefix=$PREFIX/$PROG/$SHORTVER
   --with-ssh=/usr/bin/ssh
   --with-editor=/usr/bin/vim
   --enable-client
