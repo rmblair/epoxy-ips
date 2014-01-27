@@ -1,0 +1,13 @@
+license COPYING license=GPLv3
+
+# don't ship directories we don't need to (provided elsewhere)
+<transform dir path=usr/.* -> drop>
+<transform dir path=var$ -> drop>
+<transform dir path=var/lib$ -> drop>
+<transform dir path=var/run$ -> drop>
+
+# strip directories from smf area
+<transform dir path=lib/svc.* -> drop>
+
+# tag samba config as ... config
+<transform file path=etc/samba/(.*)$ -> set preserve renamenew>
