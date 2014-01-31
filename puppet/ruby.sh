@@ -66,6 +66,7 @@ CONFIGURE_OPTS_64="
     --disable-install-rdoc
     --disable-install-capi
     --with-opt-dir=$PREFIX/puppet/augeas/$AUGEAS_SHORTVER:$PREFIX/puppet/yaml/$YAML_SHORTVER:$PREFIX/puppet/libffi/$FFI_SHORTVER
+    --enable-dtrace
 "
 
 MAKE=gmake
