@@ -36,6 +36,7 @@ VERHUMAN=$VER   # Human-readable version
 PKG=$PKGNAMESPACE/editor/emacs # Package name (e.g. library/foo)
 SUMMARY="GNU Emacs is an extensible, customizable text editor--and more"
 DESC="${SUMMARY}"         # Longer description, must be filled in
+SHORTVER=$(shorten_to_majmin $VER)
 
 BUILD_DEPENDS_IPS="library/ncurses"
 RUN_DEPENDS_IPS="library/ncurses"
@@ -49,7 +50,7 @@ LDFLAGS="-lcurses"
 BUILDARCH=64
 # we don't have X11, but don't try finding it either
 CONFIGURE_OPTS_64="
-    --prefix=$PREFIX/$PROG/$VER
+    --prefix=$PREFIX/$PROG/$SHORTVER
     --without-all
 "
 
