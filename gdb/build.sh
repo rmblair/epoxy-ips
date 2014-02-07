@@ -30,7 +30,7 @@
 . ../../../lib/more-functions.sh
 
 PROG=gdb
-VER=7.6.2
+VER=7.7
 VERHUMAN=$VER
 PKG=$PKGNAMESPACE/developer/debug/gdb
 SUMMARY="$PROG - the GNU Project debugger"
