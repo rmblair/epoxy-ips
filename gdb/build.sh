@@ -52,6 +52,7 @@ CONFIGURE_OPTS_64="
     --with-curses
     --with-libexpat-prefix=/usr/lib
     --without-python
+    --disable-werror
 "
 
 init
