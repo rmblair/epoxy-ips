@@ -30,7 +30,7 @@
 . ../../../lib/more-functions.sh #from epoxy-ips-bootstrap
 
 PROG=emacs      # App name
-VER=24.3        # App version
+VER=24.5        # App version
 VERHUMAN=$VER   # Human-readable version
 #PVER=          # Branch (set in config.sh, override here if needed)
 PKG=$PKGNAMESPACE/editor/emacs # Package name (e.g. library/foo)
