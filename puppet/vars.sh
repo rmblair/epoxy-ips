@@ -1,7 +1,7 @@
-AUGEAS_VER=1.2.0
-FACTER_VER=1.7.5
-FFI_VER=3.0.13
-HIERA_VER=1.3.2
+AUGEAS_VER=1.3.0
+FACTER_VER=1.7.6
+FFI_VER=3.2.1
+HIERA_VER=1.3.4
 RUBY_AUGEAS_VER=0.5.0
 YAML_VER=0.1.5
 
@@ -9,7 +9,7 @@ YAML_VER=0.1.5
 # this is what ruby uses in its gem path, despite being != current (1.9.3?)
 #RUBY_LIB_VER=1.9.1
 
-RUBY_VER=2.0.0-p481
+RUBY_VER=2.0.0-p645
 RUBY_LIB_VER=2.0.0
 
 # maybe something in 3.4 breaks for you?
