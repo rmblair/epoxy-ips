@@ -5,13 +5,6 @@ HIERA_VER=3.0.5
 RUBY_AUGEAS_VER=0.5.0
 YAML_VER=0.1.5
 
-#RUBY_VER=1.9.3-p484
-# this is what ruby uses in its gem path, despite being != current (1.9.3?)
-#RUBY_LIB_VER=1.9.1
-
-#RUBY_VER=2.0.0-p645
-#RUBY_LIB_VER=2.0.0
-
 RUBY_VER=2.1.8
 RUBY_LIB_VER=2.1.0
 
