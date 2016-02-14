@@ -30,7 +30,7 @@
 . ../../../lib/more-functions.sh #from epoxy-ips-bootstrap
 
 PROG=jruby    # App name
-VER=1.7.24     # App version
+VER=9.0.5.0     # App version
 VERHUMAN=$VER # Human-readable version
 #PVER=         # Branch (set in config.sh, override here if needed)
 PKG=$PKGNAMESPACE/language/runtime/jruby # Package name (e.g. library/foo)
@@ -52,7 +52,7 @@ build_jruby() {
     mkdir -p $DESTDIR/$PREFIX/$PROG/$SHORTVER || \
         logerr "--- Failed to create installation directory"
     pushd $TMPDIR/$BUILDDIR > /dev/null
-    logcmd cp -r bin docs lib samples tool $DESTDIR/$PREFIX/$PROG/$SHORTVER || \
+    logcmd cp -r bin lib samples tool $DESTDIR/$PREFIX/$PROG/$SHORTVER || \
         logerr "--- Failed to copy JRuby bits into DESTDIR"
     popd > /dev/null
 }
