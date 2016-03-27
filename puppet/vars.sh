@@ -14,4 +14,4 @@ RUBY_LIB_VER=2.1.0
 
 # maybe something in 3.4 breaks for you?
 #PUPPET_VER=3.7.5
-PUPPET_VER=3.8.4
+PUPPET_VER=3.8.6
