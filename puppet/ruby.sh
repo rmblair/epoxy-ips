@@ -51,7 +51,7 @@ DEPENDS_IPS="
 
 BUILD_DEPENDS_IPS="
     ${DEPENDS_IPS}
-    $PKGNAMESPACE/language/runtime/jruby@1.7
+    $PKGNAMESPACE/language/runtime/jruby@9.0
 "
 
 # reconfigure download to use a global site
