@@ -30,7 +30,7 @@
 . ../../../lib/more-functions.sh #from epoxy-ips-bootstrap
 
 PROG=samba      # App name
-VER=4.4.2      # App version
+VER=4.4.3      # App version
 VERHUMAN=$VER   # Human-readable version
 #PVER=          # Branch (set in config.sh, override here if needed)
 PKG=$PKGNAMESPACE/service/network/samba44 # Package name (e.g. library/foo)
